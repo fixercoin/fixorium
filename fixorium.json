@@ -1,1 +1,17 @@
-
+## package.json
+```json
+{
+  "name": "fixorium-blockchain",
+  "version": "1.0.0",
+  "description": "A fully functional Fixorium Blockchain",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.9",
+    "body-parser": "^1.19.0",
+    "jquery": "^3.5.1"
+  }
+}
