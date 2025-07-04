@@ -1,0 +1,38 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethereum Wallet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Ethereum Wallet</h1>
+    </header>
+    <main>
+        <form id="create-wallet-form">
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            <button type="submit">Create Wallet</button>
+        </form>
+        <div id="wallet-container" style="display: none;">
+            <h2>Wallet Address:</h2>
+            <p id="wallet-address"></p>
+            <h2>Balance:</h2>
+            <p id="balance"></p>
+            <button id="send-btn">Send</button>
+            <button id="receive-btn">Receive</button>
+            <button id="transactions-btn">Transactions</button>
+        </div>
+        <div id="transactions-container" style="display: none;">
+            <h2>Transactions:</h2>
+            <ul id="transactions-list"></ul>
+        </div>
+    </main>
+    <script src="https:                                                             
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.4.1/dist/ethers.umd.min.js"></script>
+    <script src="script.js"></script>
+    <script src="wallet.js"></script>
+</body>
+</html>
