@@ -41,3 +41,57 @@ class WalletScript {
 }
 
 module.exports = WalletScript;
+
+
+// Authentication logic
+const loginForm = document.getElementById('login-form');
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+const screenLock = document.getElementById('screen-lock');
+const pinInput = document.getElementById('pin');
+const unlockBtn = document.getElementById('unlock-btn');
+const walletInterface = document.getElementById('wallet-interface');
+
+let user = null;
+let pin = '1234'; // Default PIN
+
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const username = usernameInput.value;
+  const password = passwordInput.value;
+  // Call API to authenticate user
+  authenticateUser(username, password)
+    .then((userData) => {
+      user = userData;
+      // Show screen lock
+      screenLock.style.display = 'block';
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
+
+unlockBtn.addEventListener('click', () => {
+  const enteredPin = pinInput.value;
+  if (enteredPin === pin) {
+    // Show wallet interface
+    walletInterface.style.display = 'block';
+    screenLock.style.display = 'none';
+  } else {
+    alert('Invalid PIN');
+  }
+});
+
+// API call to authenticate user
+function authenticateUser(username, password) {
+  // Replace with actual API call
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (username === 'test' && password === 'test') {
+        resolve({ username: 'test', email: 'test@example.com' });
+      } else {
+        reject('Invalid credentials');
+      }
+    }, 1000);
+  });
+     }
