@@ -1,6 +1,6 @@
- const User = require('./models/User');
-const Wallet = require('./models/Wallet');
-const Transaction = require('./models/Transaction');
+ const User = require('https://htmlpreview.github.io/?https://github.com/fixercoin/fixorium/blob/main/wallet/models/User');
+const Wallet = require('https://htmlpreview.github.io/?https://github.com/fixercoin/fixorium/blob/main/wallet/models/Wallet');
+const Transaction = require('https://htmlpreview.github.io/?https://github.com/fixercoin/fixorium/blob/main/wallet/models/Transaction');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 
