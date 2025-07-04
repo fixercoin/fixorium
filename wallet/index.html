@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethereum Wallet</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Multi-Chain Wallet</title>
+    <style>
+        /* CSS styles here */
+    </style>
 </head>
 <body>
     <header>
-        <h1>Ethereum Wallet</h1>
+        <h1>Multi-Chain Wallet</h1>
     </header>
     <main>
-        <form id="create-wallet-form">
-            <label for="password">Password:</label>
-            <input type="password" id="password" required>
-            <button type="submit">Create Wallet</button>
-        </form>
+        <button id="connect-wallet-btn">Connect Wallet</button>
         <div id="wallet-container" style="display: none;">
             <h2>Wallet Address:</h2>
             <p id="wallet-address"></p>
@@ -30,9 +28,86 @@
             <ul id="transactions-list"></ul>
         </div>
     </main>
-    <script src="https:                                                             
+    <script src="https:                                                                               
     <script src="https://cdn.jsdelivr.net/npm/ethers@5.4.1/dist/ethers.umd.min.js"></script>
-    <script src="script.js"></script>
-    <script src="wallet.js"></script>
-</body>
-</html>
+    <script>
+        // JavaScript code here
+        const connectWalletBtn = document.getElementById('connect-wallet-btn');
+        const walletContainer = document.getElementById('wallet-container');
+        const walletAddressElement = document.getElementById('wallet-address');
+        const balanceElement = document.getElementById('balance');
+        const sendBtn = document.getElementById('send-btn');
+        const receiveBtn = document.getElementById('receive-btn');
+        const transactionsBtn = document.getElementById('transactions-btn');
+        const transactionsContainer = document.getElementById('transactions-container');
+        const transactionsList = document.getElementById('transactions-list');
+
+        let wallet;
+        let provider;
+        let solanaProvider;
+
+        connectWalletBtn.addEventListener('click', async () => {
+            if (window.ethereum) {
+                // Ethereum wallet connection
+                provider = new ethers.providers.Web3Provider(window.ethereum);
+                await provider.send("eth_requestAccounts", []);
+                wallet = provider.getSigner();
+                walletContainer.style.display = 'block';
+                connectWalletBtn.style.display = 'none';
+                walletAddressElement.innerText = await wallet.getAddress();
+                getBalance();
+            } else if (window.solana) {
+                // Solana wallet connection (Phantom)
+                solanaProvider = window.solana;
+                try {
+                    await solanaProvider.connect();
+                    wallet = solanaProvider.publicKey;
+                    walletContainer.style.display = 'block';
+                    connectWalletBtn.style.display = 'none';
+                    walletAddressElement.innerText = wallet.toString();
+                    getSolanaBalance();
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        });
+
+        sendBtn.addEventListener('click', async () => {
+            if (provider) {
+                // Send Ether
+                const recipient = prompt('Enter recipient address');
+                const amount = prompt('Enter amount to send (in Ether)');
+                await sendTransaction(recipient, amount);
+            } else if (solanaProvider) {
+                // Ask the user if they want to send SOL or FIXERCOIN
+                const token = prompt('Enter token to send (SOL/FIXERCOIN)');
+                const recipient = prompt('Enter recipient address');
+                const amount = prompt('Enter amount to send');
+
+                if (token.toUpperCase() === 'SOL') {
+                    await sendSolanaTransaction(recipient, amount);
+                } else if (token.toUpperCase() === 'FIXERCOIN') {
+                    await sendFixercoinTransaction(recipient, amount);
+                } else {
+                    alert('Unsupported token');
+                }
+            }
+        });
+
+        async function sendFixercoinTransaction(recipient, amount) {
+            // Specify the Fixercoin contract address
+            const fixercoinContractAddress = 'H4qKn8FMFha8jJuj8xMryMqRhH3h7GjLuxw7TVixpump';
+
+            // Create a new transaction
+            const transaction = new solanaWeb3.Transaction();
+
+            // Add the transfer instruction
+            transaction.add(
+                solanaWeb3.Token.createTransferInstruction(token.fixercoinContractAddress, wallet.publicKey, new solanaWeb3.PublicKey(recipient), amount * 1e9)
+            );
+
+            // Set the fee to 0
+            transaction.feePayer = wallet.publicKey;
+
+            // Send the transaction
+            try {
