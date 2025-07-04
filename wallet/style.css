@@ -1,122 +1,90 @@
  body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f0f0f0;
+    perspective: 1000px;
 }
 
-#wallet {
-  width: 300px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transform: perspective(1000px) rotateX(10deg);
-  transform-style: preserve-3d;
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    border-bottom: 1px solid #444;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: rotateX(0deg);
+    transform-style: preserve-3d;
 }
 
-#wallet::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  transform: translateZ(-10px);
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    perspective: 1000px;
 }
 
-#wallet::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  transform: translateZ(-20px);
+#create-wallet-form {
+    background-color: #fff;
+    padding: 2em;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 400px;
+    transform: rotateX(0deg);
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
 }
 
-#wallet h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
+#create-wallet-form:hover {
+    transform: rotateX(10deg);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
-#balance {
-  font-size: 18px;
-  margin-bottom: 20px;
+#wallet-container {
+    background-color: #fff;
+    padding: 2em;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 400px;
+    transform: rotateX(0deg);
+    transform-style: preserve-3d;
+    transition: transform 00.5s;
 }
 
-input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
+#wallet-container:hover {
+    transform: rotateX(10deg);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+#transactions-container {
+    background-color: #fff;
+    padding: 2em;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 400px;
+    transform: rotateX(0deg);
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+#transactions-container:hover {
+    transform: rotateX(10deg);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
 button {
-  width: 100%;
-  padding: 10px;
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.5s;
 }
 
 button:hover {
-  background-color: #3e8e41;
-}
-
-#history {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-}
-
-/* Login Form */
-#login-form {
-  width: 300px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#login-form label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-#login-form input[type="text"],
-#login-form input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-}
-
-/* Screen Lock */
-#screen-lock {
-  width: 300px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#screen-lock label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-#screen-lock input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
