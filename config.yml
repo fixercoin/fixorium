@@ -1,0 +1,83 @@
+# fixorium/config.yml
+
+version: 1
+accounts:
+  - name: alice
+    coins: ["100000000000fxm"]
+    mnemonic: "grant rice replace explain federal release fix clever romance raise weather wild"
+  - name: bob
+    coins: ["50000000000fxm"]
+    mnemonic: "result resemble final season fit inch lunch actual mansion toy cave direct"
+
+client:
+  openapi:
+    path: "docs/static/openapi.yml"
+  typescript:
+    path: "ts-client"
+  vuex:
+    path: "vue/src/store"
+  composables:
+    path: "vue/src/composables"
+
+build:
+  main: "cmd/fixoriumd"
+  binary: "fixoriumd"
+
+genesis:
+  chain_id: "fixorium-1122"
+  denom: "fxm"
+
+init:
+  app_config:
+    minimum-gas-prices: "100fxm"
+
+faucet:
+  name: "alice"
+  coins: ["10000000fxm"]
+
+host:
+  rpc: "https://rpc.fixorium.com.pk:26657"
+  p2p: "https://rpc.fixorium.com.pk:26656"
+  prof: "https://rpc.fixorium.com.pk:6060"
+  grpc: "https://rpc.fixorium.com.pk:9090"
+  api: "https://rpc.fixorium.com.pk:1317"
+  ros: "https://rpc.fixorium.com.pk:8080"
+
+# 6 decimals for FXM (matching Solana)
+bank:
+  denom_metadata:
+    - base: "fxm"
+      display: "FXM"
+      name: "Fixorium"
+      symbol: "FXM"
+      denom_units:
+        - denom: "fxm"
+          exponent: 0
+        - denom: "FXM"
+          exponent: 6
+
+# Gas fee configuration - 100 FXM minimum
+feemarket:
+  params:
+    no_base_fee: false
+    base_fee: "100000000"
+    base_fee_change_denominator: 8
+    elasticity_multiplier: 2
+    enable_height: 0
+    min_gas_price: "100000000"
+
+# EVM Configuration
+evm:
+  evm_denom: "fxm"
+  enable_create: true
+  enable_call: true
+  chain_config:
+    homestead_block: 0
+    eip150_block: 0
+    eip155_block: 0
+    eip158_block: 0
+    eip1559_block: 0
+  json_rpc:
+    enable: true
+    address: "0.0.0.0:8545"
+    ws_address: "0.0.0.0:8546"
