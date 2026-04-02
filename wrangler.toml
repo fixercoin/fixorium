@@ -1,0 +1,29 @@
+# wrangler.toml
+
+name = "fixorium-rpc-proxy"
+main = "src/rpc-worker.ts"
+compatibility_date = "2024-01-01"
+
+# Environment variables
+[vars]
+FIXORIUM_RPC_URLS = "http://your-server-ip:26657,http://backup-server-ip:26657"
+FAILURE_ERROR_CODE_LIST = "429,400,403,500,502,503,504"
+
+# KV Namespace for node health tracking
+[[kv_namespaces]]
+binding = "KV_RPC_HEALTH"
+id = "your-kv-namespace-id"
+
+# Trigger for scheduled health checks (every 30 seconds)
+[triggers]
+crons = ["*/30 * * * * *"]
+
+# For production domain
+[env.production]
+routes = [
+  { pattern = "rpc.fixorium.com.pk", custom_domain = true }
+]
+
+# For preview/testing
+[env.preview]
+workers_dev = true
